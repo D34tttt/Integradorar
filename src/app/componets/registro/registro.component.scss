@@ -1,0 +1,41 @@
+.titulo{
+    margin: 50px;
+    color:rgb(8, 94, 157);
+    font-size: 40px;
+}
+
+.l{
+    margin-left:3%;
+    margin-right:3%;
+    margin-top:20px;
+    border:1px solid black;
+}
+
+.m{
+    width: 150px;
+    font-size:18px;
+    margin-top:-12px;
+    margin-left:7px;
+    background:white;
+}
+.m1{
+    width: 80px;
+    font-size:18px;
+    margin-top:-12px;
+    margin-left:7px;
+    background:white;
+}
+.m2{
+    width: 150px;
+    font-size:18px;
+    margin-top:-12px;
+    margin-left:7px;
+    background:white;
+}
+.navegador{
+    position: absolute;
+    width: 100%;
+    background-color: rgb(192, 191, 189);
+    position: -webkit-sticky;
+    position: sticky;
+   }

@@ -1,4 +1,43 @@
 .busqueda{
     position: absolute;
-    background-color: aqua;
+    width: 60%;
+    margin-left: 5%;
+    margin-top: 1%;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+.in{
+    width: 95%;
+    border: 0px;
+    border-radius: 20px;
+    outline:none;
+}
+.imgl{
+    float: right;
+    margin-right: 10px;
+}
+.map{
+    position: absolute;
+    width: 70%;
+    margin-left: 5%;
+    margin-top: 4%;
+    border: 1px solid black;
+    height: 80%;
+}
+.acciones{
+    float: right;
+    margin-right:5%;
+    margin-top: 4%;
+    width: 15%;
+    height: 10cm;
+    border: 1px solid black;
+
+}
+.document{
+    position: absolute;
+    width: 70%;
+    margin-left: 5%;
+    margin-top: 50%;
+    border: 1px solid black;
+    height: 80%;
 }
