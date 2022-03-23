@@ -21,13 +21,13 @@
                     <h4>Usuario</h4>
 					<div class="input-group form-group">
                         
-						<input ame="email" class="form-control" placeholder="Correo"required>
+						<input [(ngModel)]="valor1"type="text"name="usuario" class="form-control" placeholder="usuario"required>
 						
 					</div>
                     <h4>Contraseña</h4>
 					<div class="input-group form-group">
 						
-						<input type="password"name="password" class="form-control" placeholder="password">
+						<input [(ngModel)]="valor2"type="password"name="password" class="form-control" placeholder="password">
                         
 					</div>
                     <p style="color: red;"></p>

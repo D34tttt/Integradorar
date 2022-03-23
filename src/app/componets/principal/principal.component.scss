@@ -35,9 +35,13 @@
 }
 .document{
     position: absolute;
-    width: 70%;
+    width: 90%;
     margin-left: 5%;
     margin-top: 50%;
     border: 1px solid black;
-    height: 80%;
+    height: 100%;
+}
+.inp{
+    border:  0px;
+    outline:none;
 }

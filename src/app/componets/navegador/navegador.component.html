@@ -1,4 +1,16 @@
 
 <div class="navegador">
- ola<!--En este apartado se ponen los botones dependiendo el usuario-->
+ <button (click)="y()">Crear terrenos</button> <button (click)="j()"> Mis Terrenos</button>
+ <div class='li'>
+    <span [matMenuTriggerFor]="menu"class="material-icons">
+        settings
+        </span>
+    <mat-menu #menu="matMenu">
+      <button (click)="s()"mat-menu-item><span class="material-icons">
+        power_settings_new
+        </span></button>
+    </mat-menu>
+    
+ </div>
+ <!--En este apartado se ponen los botones dependiendo el usuario-->
 </div>

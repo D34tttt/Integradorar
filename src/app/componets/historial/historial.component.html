@@ -1,1 +1,24 @@
-<p>historial works!</p>
+<app-navegador></app-navegador>
+<div class="titulo">
+    Registro De Terrenos
+</div>
+<div class="y">
+    <table class="table"ngz nz-demo-table-basic>
+        <thead>
+          <tr>
+            <th scope="col">Fecha</th>
+            <th scope="col">Localisacion en le mapa</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <thead>
+          <tr *ngFor="let item of Tipo">
+            <td scope="col">{{item.fecha}}</td>
+            <td scope="col">{{item.latitud+" "+item.longitud}}</td>
+            <td scope="col"><span class="material-icons" >edit</span> <span (click)="eliminar(item.idl)"class="material-icons">delete_outline</span><span class="material-icons">
+              navigate_next
+              </span></td>
+          </tr>
+        </thead>
+      </table>
+</div>

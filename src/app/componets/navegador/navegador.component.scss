@@ -1,7 +1,13 @@
 .navegador{
- position: absolute;
- width: 100%;
- background-color: rgb(192, 191, 189);
- position: -webkit-sticky;
- position: sticky;
+    position: absolute;
+    width: 100%;
+    background-color: rgb(192, 191, 189);
+    position: -webkit-sticky;
+    position: sticky;
+   }
+   
+.li{
+    position: relative;
+    float: right;
+    margin-right: 20px;
 }

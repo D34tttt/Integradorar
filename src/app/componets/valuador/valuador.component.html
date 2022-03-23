@@ -1,0 +1,22 @@
+<app-navegador2></app-navegador2>
+<div class="titulo">
+    Terrenos a evaluar
+</div>
+<div class="y">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Propietario</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <thead>
+            <tr *ngFor="let item of Tipo">
+              <td scope="col">{{item.nombre}}</td>
+              <td scope="col">{{item.fecha}}</td>
+              <td scope="col"><span class="material-icons"(click)="r()">edit</span> <span class="material-icons">delete_outline</span></td>
+            </tr>
+          </thead>
+      </table>
+</div>
