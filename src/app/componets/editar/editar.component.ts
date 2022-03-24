@@ -1,18 +1,16 @@
-import { conditionallyCreateMapObjectLiteral } from '@angular/compiler/src/render3/view/util';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Consulta, Historial, NumT, Terreno, Usuario } from 'src/app/models/servisiobasedatos';
+import { Consulta, Historial, NumT, Terreno } from 'src/app/models/servisiobasedatos';
 import { UsuariosService } from 'src/app/service/usuarios.service';
 import { DialogoComponent } from '../dialogo/dialogo.component';
-import { tipoUsuario } from '../../models/servisiobasedatos';
 
 @Component({
-  selector: 'app-principal',
-  templateUrl: './principal.component.html',
-  styleUrls: ['./principal.component.scss']
+  selector: 'app-editar',
+  templateUrl: './editar.component.html',
+  styleUrls: ['./editar.component.scss']
 })
-export class PrincipalComponent implements OnInit {
+export class EditarComponent implements OnInit {
   result = "";
   valuador="";
   valor0=""
@@ -52,23 +50,8 @@ export class PrincipalComponent implements OnInit {
       this.valor3=rest[p].apMaterno;
       this.valor4=rest[p].correoElec;
       this.valor5=rest[p].tel;
-      this.valor6=rest[p].estado;
-      this.valor7=rest[p].municipio;
-      this.valor8=rest[p].counidad;
-      
     })
-    function generaNss() {
-      let result = '';
-      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-      const charactersLength = characters.length;
-      for (let i = 0; i < charactersLength; i++) {
-          result += characters.charAt(Math.floor(Math.random() * charactersLength));
-      }
-  
-      return result;
   }
-   this.valor0=generaNss()
-   }
    l(){
     let j = 0;
     let resultado=localStorage.getItem('resultados');
@@ -176,5 +159,6 @@ export class PrincipalComponent implements OnInit {
 this.T1="Tienes que seleccionar un Valuador para realisar la consulta"
 }
 }
-    
+  
+
 }

@@ -12,7 +12,6 @@ export class Navegador2Component implements OnInit {
   constructor(private router: Router) { }
   s(){
     this.router.navigateByUrl('/login')
-    window.location.reload()
     localStorage.setItem('resultados',  this.resultado )
    }
   ngOnInit(): void {

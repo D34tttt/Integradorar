@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { UsuariosService } from 'src/app/service/usuarios.service';
+import { DialogoComponent } from '../dialogo/dialogo.component';
 @Component({
   selector: 'app-historial',
   templateUrl: './historial.component.html',
@@ -8,8 +10,8 @@ import { UsuariosService } from 'src/app/service/usuarios.service';
 })
 export class HistorialComponent implements OnInit {
   public Tipo: Array<any> = [];
-  t=0;
-  constructor(
+  t = 0;
+  constructor(public dialog: MatDialog,
     private router: Router,
     private usuariosService: UsuariosService
   ) {
@@ -20,37 +22,45 @@ export class HistorialComponent implements OnInit {
 
   }
   eliminar(item: 0) {
-    this.t=0;
-    console.log(item);
+    this.t = 0;
     this.usuariosService.getTerrenos().subscribe((rest: any) => {
       this.usuariosService.getHistorial().subscribe((historial: any) => {
         this.usuariosService.getConsulta().subscribe((consulta: any) => {
-        for (let i = 0; i < historial.length; i++) {
-          let hist = historial[i].idl;
-          if (item == hist) {
-              let j=historial[i]._id;
-            for (let i = 0; i < rest.length; i++) {
-              let numT = rest[i].idl;
-              if (item == numT) {
-                 let y=rest[i]._id;
-                 for (let i = 0; i < rest.length; i++) {
-                      let cosulta=consulta[i].idTerreno
-                     
-                     if(item==cosulta){this.t=1}
-                     
+          for (let i = 0; i < historial.length; i++) {
+            let hist = historial[i].idl;
+            if (item == hist) {
+              let j = historial[i]._id;
+              for (let i = 0; i < rest.length; i++) {
+                let numT = rest[i].idl;
+                if (item == numT) {
+                  let v= rest[i]._id;
+                  for (let i = 0; i <consulta.length; i++){
+                    let cost = consulta[i].idT;
+                    if(item == cost){this.t=1
+                    }
+                  }
+                  if(this.t!=1){
+                    const dialogRef = this.dialog.open(DialogoComponent,{
+                      width:'350px',
+                      data:'¿Deseas eliminar el terreno?'
+                    });
+                    dialogRef.afterClosed().subscribe(dialogRef => {
+                      if(dialogRef){
+                    this.usuariosService.eliHistorial(j).subscribe((rest: any)=>{})
+                    this.usuariosService.eliTerreno(v).subscribe((rest: any)=>{})
+                    window.location.reload();
+                      }
+                  });
+                  }else{
+                    alert("Tu terreno esta siendo evaluado")
+                  }
+
                 }
-                if(this.t!=1){
-                  console.log(
-                  "hola"
-                  )
-               }else{
-                 alert("este terreno esta en proseso para su valoracio")
-               }
               }
+
             }
           }
-        }
-      });
+        });
       });
     });
   }
@@ -66,6 +76,40 @@ export class HistorialComponent implements OnInit {
           p++;
         }
       }
+    });
+  }
+  editar(item:0){
+    this.t = 0;
+    this.usuariosService.getTerrenos().subscribe((rest: any) => {
+      this.usuariosService.getHistorial().subscribe((historial: any) => {
+        this.usuariosService.getConsulta().subscribe((consulta: any) => {
+          for (let i = 0; i < historial.length; i++) {
+            let hist = historial[i].idl;
+            if (item == hist) {
+              let j = historial[i]._id;
+              for (let i = 0; i < rest.length; i++) {
+                let numT = rest[i].idl;
+                if (item == numT) {
+                  let v= rest[i]._id;
+                  for (let i = 0; i <consulta.length; i++){
+                    let cost = consulta[i].idT;
+                    if(item == cost){this.t=1
+                    }
+                  }
+                  if(this.t!=1){
+                    localStorage.setItem('Terreno',  v ) ;
+                   this.router.navigateByUrl('/editar')
+                  }else{
+                    alert("Tu terreno esta siendo evaluado")
+                  }
+
+                }
+              }
+
+            }
+          }
+        });
+      });
     });
   }
 }

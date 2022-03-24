@@ -1,0 +1,76 @@
+<app-navegador></app-navegador>
+<div>
+    <!-- div del documento de usuario comun -->
+    <div class="document">
+        <p class="titulo"></p>
+        <div class="l">
+
+            <h1 style="margin: 10px" class="m">Caracteristicas del Terreno</h1>
+            <P style="margin: 10px"class="ly">En este apartado solo se te será posible corregir las características siguientes: Ancho, Largo, Área.</P>
+            <h2 style="margin: 10px" class="m">Propietario</h2>
+            <p style="margin: 10px">NumDoc: 00{{tipo}} </p>
+            <label style="margin: 5px">Nombre:</label><input style="margin: 1px" type="text" [(ngModel)]="valor1"
+                class="inp">
+            <label style="margin: 5px" for="lname">Apellido Paterno:</label>
+            <input type="text" id="lname" class="inp" [(ngModel)]="valor2" disabled>
+            <label style="margin: 5px" for="lname">Apellido Materno:</label>
+            <input type="text" id="lname" class="inp" [(ngModel)]="valor3" disabled><br><br>
+            <label style="margin: 5px" for="email">Email:</label>
+            <input type="email" class="inp" [(ngModel)]="valor4" disabled="">
+            <label style="margin: 5px" for="lname">Tel:</label>
+            <input type="tel" id="phone" class="inp" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" require
+                placeholder="123-456-7890" [(ngModel)]="valor5" disabled>
+        </div>
+        <div class="l">
+
+            <h2 style="margin: 5px" class="m2">Localizacion del terreno</h2>
+            <label style="margin: 5px" for="fname">Estado:</label><input type="text" class="inp" [(ngModel)]="valor6"disabled>
+            <label style="margin: 5px" for="lname">Municipio:</label>
+            <input type="text" id="lname" class="inp" [(ngModel)]="valor7"disabled>
+            <label style="margin: 5px" for="email">Colonia o Comunidad:</label>
+            <input type="email" class="inp" [(ngModel)]="valor8"disabled><br><br>
+
+        </div>
+
+        <div class="l">
+
+            <h2 style="margin: 5px" class="m2">Coordenadas del mapa</h2>
+            <label style="margin: 5px" for="fname">Latitud:</label><input type="text" class="inp" [(ngModel)]="valor9"disabled>
+            <label style="margin: 5px" for="lname">Longitud:</label>
+            <input type="text" id="lname" class="inp" [(ngModel)]="valor10"disabled><br><br>
+
+
+        </div>
+        <div class="l">
+
+            <h2 style="margin: 5px" class="m2">Medidas del terreno</h2>
+            <label style="margin: 5px" for="fname">Ancho:</label><input type="text" class="inp"
+                [(ngModel)]="valor11"><br><br>
+            <label style="margin: 5px" for="lname">Largo:</label>
+            <input type="text" class="inp" [(ngModel)]="valor12"><br><br>
+            <label style="margin: 5px" for="lname">Area:</label>
+            <input type="text" class="inp" [(ngModel)]="valor13">
+
+        </div>
+        Patente de valoracion :<h1>{{"   "+valor0}}</h1>
+    </div>
+
+
+    <!-- div para poner los botones de las acciones que puede realisar -->
+    <div class="acciones"><br>
+        <label style="margin: 10px" for="lname">Solicitar Valuador:</label>
+        <select [(ngModel)]="valuador" style="margin: 10px" class="form-select" aria-label="Default select example">
+            <option selected >Seleccionar Valuador</option>
+            <option *ngFor="let item of Tipo"value={{item.nomUsuari}}>{{item.nombre+" "+item.apPaterno+" "+item.apMaterno}}</option>
+           
+        </select><br>
+        <p>{{T1}}</p> 
+        <button style="margin: 10px" type="button" (click)="y()" class="btn btn-secondary btn-sm">solocitar evaluacio</button>
+        <br>
+        <p>¿Deseas guardar los cambios al terreno?</p>
+        <button style="margin: 10px" type="button" class="btn btn-secondary btn-sm" (click)="GuT()">Guardar</button>
+             <button style="margin: 10px" type="button" class="btn btn-secondary btn-sm" (click)="GuT()">eliminar</button>
+             <button style="margin: 10px" type="button" class="btn btn-secondary btn-sm" (click)="GuT()">Cancelar</button>        
+    </div>
+   
+</div>

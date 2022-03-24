@@ -61,9 +61,9 @@ export interface NumT{
 }
 export interface Historial{
     _id?:        string;
-    idl:         number
+    idl:         number;
     nomUsuari:   string,
-    fecha:       string,
+    fecha:       Date,
     latitud:     number,
 	longitud:    number,
     file?:       string
@@ -71,10 +71,10 @@ export interface Historial{
 }
 export interface Consulta{
     _id?:        string;
-    nomUsuari:   string,
-    fecha:       string,
-    nombre:      string,
-    estadoC:     string,
-    idTerreno:   number
+    nomUsuari:   string;
+    fecha:       Date;
+    nombre:      string;
+    estadoC:     string;
+    idT:         number;
     __v?:        number;
 }

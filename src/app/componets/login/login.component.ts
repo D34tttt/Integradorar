@@ -68,6 +68,7 @@ export class LoginComponent implements OnInit {
             
           this.router.navigateByUrl('/evaluar terrenos');
         }else{
+         
           this.router.navigateByUrl('/home');
 
         }
