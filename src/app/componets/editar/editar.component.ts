@@ -29,11 +29,13 @@ export class EditarComponent implements OnInit {
   valor13=0;
   data="";
   T1="";
+  t=0;
   user: any;
   resultad="";
   tipo=0;
   public Tipo: Array<any> = [];
   U="";
+  rr="";
   constructor(public dialog: MatDialog,public router: Router,public usuariosService: UsuariosService) {
     let p=0;
     this.usuariosService.getPersonas().subscribe((rest:any)=>{
@@ -74,7 +76,6 @@ export class EditarComponent implements OnInit {
    
   ngOnInit(): void {
     this.l()
-    this.getNumT()
     let date= new Date();
     let dia=date.getDate();
     let mes=date.getMonth()
@@ -82,12 +83,20 @@ export class EditarComponent implements OnInit {
     let tiem=date.getHours()
     let min=date.getMinutes()
     this.data=(dia+"-"+ mes+"-"+ year+" "+tiem+":"+min)
-  }
-  getNumT(){
-    
-    this.usuariosService.getNumt().subscribe((rest:any)=>{
-     this.tipo=rest[0].nomNumT
-     this.tipo++;
+    let r= String(localStorage.getItem("Terreno"))
+    this.rr=r;
+    this.usuariosService.getTerreno(r).subscribe((rest:any)=>{
+      let yy=rest.terreno;
+     this.tipo=yy.idl;
+     this.valor6=yy.estado;
+     this.valor7=yy.municipio;
+     this.valor8=yy.comunidad;
+     this.valor9=yy.latitud;
+     this.valor10=yy.longitud;
+     this.valor11=yy.ancho;
+     this.valor12=yy.largo;
+     this.valor13=yy.area;
+     this.valor0=yy.idTerreno;
     })
   }
   GuT(){
@@ -97,11 +106,6 @@ export class EditarComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(dialogRef => {
       if(dialogRef){
-
-    const newNum: NumT = {
-      nomNumT: this.tipo
-    }
-    this.usuariosService.actualizarNum(newNum).subscribe((rest:any) => {})
     const newTerreno:Terreno={
       idl: this.tipo,
       idTerreno: this.valor0,
@@ -153,12 +157,79 @@ export class EditarComponent implements OnInit {
     this.usuariosService.newConsulta(consulta).subscribe((rest: any)=>{
       
     })
-    
+    this.router.navigateByUrl('/mis terrenos')
   }
 })}else{
 this.T1="Tienes que seleccionar un Valuador para realisar la consulta"
 }
 }
-  
+editar(){
+  this.valor13=this.valor11*this.valor12;
+  const newTerreno:Terreno={
+    idl: this.tipo,
+    idTerreno: this.valor0,
+    nombre_pro: this.U,
+    ancho: this.valor11,
+    largo: this.valor12,
+    area: this.valor13,
+    estado: this.valor6,
+    municipio: this.valor7,
+    comunidad: "null",
+    colinda: this.valor8,
+    latitud: this.valor9,
+    longitud: this.valor10,
+    costoPropiedad: 0
+  }
+  this.usuariosService.actualizarTerreno(this.rr,newTerreno).subscribe(res => {
+    console.log(res)
+  })
+  window.location.reload();
+}
+cancelar(){
+  this.router.navigateByUrl("/mis terrenos");
+}
+eliminar() {
+  let item=this.tipo;
+  this.t = 0;
+  this.usuariosService.getTerrenos().subscribe((rest: any) => {
+    this.usuariosService.getHistorial().subscribe((historial: any) => {
+      this.usuariosService.getConsulta().subscribe((consulta: any) => {
+        for (let i = 0; i < historial.length; i++) {
+          let hist = historial[i].idl;
+          if (item == hist) {
+            let j = historial[i]._id;
+            for (let i = 0; i < rest.length; i++) {
+              let numT = rest[i].idl;
+              if (item == numT) {
+                let v= rest[i]._id;
+                for (let i = 0; i <consulta.length; i++){
+                  let cost = consulta[i].idT;
+                  if(item == cost){this.t=1
+                  }
+                }
+                if(this.t!=1){
+                  const dialogRef = this.dialog.open(DialogoComponent,{
+                    width:'350px',
+                    data:'¿Deseas eliminar el terreno?'
+                  });
+                  dialogRef.afterClosed().subscribe(dialogRef => {
+                    if(dialogRef){
+                  this.usuariosService.eliHistorial(j).subscribe((rest: any)=>{})
+                  this.usuariosService.eliTerreno(v).subscribe((rest: any)=>{})
+                  this.router.navigateByUrl("/mis terrenos");
+                    }
+                });
+                }else{
+                  alert("Tu terreno esta siendo evaluado")
+                }
 
+              }
+            }
+
+          }
+        }
+      });
+    });
+  });
+}
 }

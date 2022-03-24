@@ -112,4 +112,17 @@ export class HistorialComponent implements OnInit {
       });
     });
   }
+  ver(item:string){
+
+    this.usuariosService.getTerrenos().subscribe((rest: any) => {
+        for (let i = 0; i <rest.length; i++){
+           let idl= rest[i].idl
+          if(item==idl) {
+            let idr= rest[i]._id
+            localStorage.setItem('Terreno',  idr ) ;
+            this.router.navigateByUrl('/ver')
+          }
+        }
+    })
+  }
 }

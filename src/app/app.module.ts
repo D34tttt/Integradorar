@@ -19,6 +19,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogoComponent } from './componets/dialogo/dialogo.component';
 import { EditarComponent } from './componets/editar/editar.component';
+import { VerComponent } from './componets/ver/ver.component';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -31,7 +32,8 @@ import { EditarComponent } from './componets/editar/editar.component';
     EvaluarComponent,
     Navegador2Component,
     DialogoComponent,
-    EditarComponent
+    EditarComponent,
+    VerComponent
     
   ],
   imports: [

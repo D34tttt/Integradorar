@@ -9,6 +9,7 @@ import { HistorialComponent } from './componets/historial/historial.component';
 import { ValuadorComponent } from './componets/valuador/valuador.component';
 import { EvaluarComponent } from './componets/evaluar/evaluar.component';
 import { EditarComponent } from './componets/editar/editar.component';
+import { VerComponent } from './componets/ver/ver.component';
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'home', component: PrincipalComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'evaluar terrenos', component: ValuadorComponent },
   { path: 'login', component: LoginComponent },
   { path:'editar', component: EditarComponent },
+  { path:'ver', component:VerComponent}
   
 ];
 

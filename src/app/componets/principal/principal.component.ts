@@ -119,6 +119,7 @@ export class PrincipalComponent implements OnInit {
       nomNumT: this.tipo
     }
     this.usuariosService.actualizarNum(newNum).subscribe((rest:any) => {})
+    this.valor13=this.valor12*this.valor11;
     const newTerreno:Terreno={
       idl: this.tipo,
       idTerreno: this.valor0,
@@ -128,8 +129,8 @@ export class PrincipalComponent implements OnInit {
       area: this.valor13,
       estado: this.valor6,
       municipio: this.valor7,
-      comunidad: "null",
-      colinda: this.valor8,
+      comunidad: this.valor8,
+      colinda:"",
       latitud: this.valor9,
       longitud: this.valor10,
       costoPropiedad: 0

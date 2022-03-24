@@ -95,6 +95,12 @@ export class UsuariosService {
   eliTerreno(t:string):Observable<Terreno>{
     return this.http.delete<Terreno>(this.url11+t);
   }
+  getTerreno(v:string):Observable<Terreno>{
+    return this.http.get<Terreno>(this.url11+v);
+  }
+  actualizarTerreno(v:string,NumT:Terreno):Observable<Terreno>{
+    return this.http.put<Terreno>(this.url11+v,NumT);
+  }
 
   getHistorial(){
     let header = new HttpHeaders()
