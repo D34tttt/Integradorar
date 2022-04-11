@@ -1,7 +1,8 @@
 import { HttpClient,HttpHeaders,HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Usuario, Estados, Municipios, Comunidades, tipoUsuario, NumT, Terreno, Historial, Consulta } from '../models/servisiobasedatos';
+import { Usuario, Estados,Valorado,
+   Municipios, Comunidades, tipoUsuario, NumT, Terreno, Historial, Consulta } from '../models/servisiobasedatos';
 
 
 
@@ -23,6 +24,8 @@ export class UsuariosService {
   url9="http://localhost:4400/api/Consultas"
   url10="http://localhost:4400/api/historial/"
   url11="http://localhost:4400/api/terreno/"
+  url12="http://localhost:4400/api/valorados"
+  url13="http://localhost:4400/api/Consulta/"
   constructor(private http: HttpClient) { 
    
   }
@@ -102,6 +105,18 @@ export class UsuariosService {
     return this.http.put<Terreno>(this.url11+v,NumT);
   }
 
+  getValoracion(){
+    let header = new HttpHeaders()
+    .set('Type-content','aplication/json')
+  
+    return this.http.get<Valorado>(this.url12,{
+      
+    });
+   }
+  newValoracio(Valorado:Valorado):Observable<Valorado>{
+    return this.http.post<Valorado>(this.url12,Valorado);
+  }
+  
   getHistorial(){
     let header = new HttpHeaders()
     .set('Type-content','aplication/json')
@@ -116,6 +131,9 @@ export class UsuariosService {
   eliHistorial(id:string):Observable<Historial>{
     return this.http.delete<Historial>(this.url10+id)
   }
+  actualizarHistorizl(id:string,his:Historial):Observable<Historial>{
+    return this.http.put<Historial>(this.url10+id,his)
+  }
 
   getConsulta(){
     let header = new HttpHeaders()
@@ -127,5 +145,8 @@ export class UsuariosService {
    }
    newConsulta(Consulta:Consulta):Observable<Consulta>{
     return this.http.post<Consulta>(this.url9,Consulta);
+  }
+  deleteC(id:string):Observable<Consulta>{
+    return this.http.delete<Consulta>(this.url13+id)
   }
 }

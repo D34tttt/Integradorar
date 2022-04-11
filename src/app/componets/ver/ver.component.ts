@@ -7,6 +7,7 @@ import { UsuariosService } from 'src/app/service/usuarios.service';
   styleUrls: ['./ver.component.scss']
 })
 export class VerComponent implements OnInit {
+  public Tipo: Array<any> = [];
   valor0=""
   valor1="";
   valor2="";
@@ -22,7 +23,12 @@ export class VerComponent implements OnInit {
   valor12=0;
   valor13=0;
   tipo=0;
+  num=0;
+  suma=0;
+  l:any;
   constructor(public usuariosService: UsuariosService) {
+    
+    
     let p=0;
     this.usuariosService.getPersonas().subscribe((rest:any)=>{
       let resultado=localStorage.getItem('resultados');
@@ -52,9 +58,29 @@ export class VerComponent implements OnInit {
      this.valor12=yy.largo;
      this.valor13=yy.area;
      this.valor0=yy.idTerreno;
+     this.ter(this.tipo)
     })
    }
-
+   ter(r:number){
+    this.get(r)
+    this.l=r;
+    this.num=Number(r);
+   }
+   get(item:any){
+    let p=0;
+   this.usuariosService.getValoracion().subscribe((valor: any) => {
+     for (let i=0; i<valor.length; i++){
+       let valor1=valor[i].idTerreno;
+       if(item==valor1){
+         this.Tipo[p]=valor[i]
+         this.suma+=valor[i].costo;
+         p++;
+        
+       }
+     }
+     })
+ 
+  }
   ngOnInit(): void {
   }
 

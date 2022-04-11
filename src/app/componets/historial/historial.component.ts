@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { UsuariosService } from 'src/app/service/usuarios.service';
+import { CargarComponent } from '../cargar/cargar.component';
 import { DialogoComponent } from '../dialogo/dialogo.component';
+import { EchoComponent } from '../echo/echo.component';
 @Component({
   selector: 'app-historial',
   templateUrl: './historial.component.html',
@@ -46,9 +48,23 @@ export class HistorialComponent implements OnInit {
                     });
                     dialogRef.afterClosed().subscribe(dialogRef => {
                       if(dialogRef){
-                    this.usuariosService.eliHistorial(j).subscribe((rest: any)=>{})
-                    this.usuariosService.eliTerreno(v).subscribe((rest: any)=>{})
-                    window.location.reload();
+                        let yo=this.dialog.open(CargarComponent,{
+                        });
+                        yo.afterClosed().subscribe(dialogRef => {
+                          if(dialogRef){
+                          }else{
+                            let correcto=this.dialog.open(EchoComponent,{
+                              data:'Terreno Eliminado correctamente'
+                            });
+                            correcto.afterClosed().subscribe(dialogRef => {
+                              this.usuariosService.eliHistorial(j).subscribe((rest: any)=>{})
+                              this.usuariosService.eliTerreno(v).subscribe((rest: any)=>{})
+                              window.location.reload();
+                            })
+                            
+                          }
+                        })
+                    
                       }
                   });
                   }else{

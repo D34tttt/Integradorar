@@ -1,4 +1,5 @@
 <app-navegador></app-navegador>
+<mat-progress-bar mode="determinate" [value]=100></mat-progress-bar>
 <div class="titulo">
     Registro De Terrenos
 </div>
@@ -8,13 +9,15 @@
           <tr>
             <th scope="col">Fecha</th>
             <th scope="col">Localisacion en le mapa</th>
+            <th scope="col">Estado del terreno</th>
             <th scope="col">Acciones</th>
           </tr>
         </thead>
         <thead>
           <tr *ngFor="let item of Tipo">
-            <td scope="col">{{item.fecha}}</td>
+            <td scope="col" >{{item.fecha}}</td>
             <td scope="col">{{item.latitud+" "+item.longitud}}</td>
+            <td scope="col">{{item.status}}</td>
             <td scope="col"><span class="material-icons" (click)="editar(item.idl)" >edit</span> <span (click)="eliminar(item.idl)"class="material-icons">delete_outline</span><span (click)="ver(item.idl)"class="material-icons">
               navigate_next
               </span></td>

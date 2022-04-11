@@ -20,6 +20,11 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { DialogoComponent } from './componets/dialogo/dialogo.component';
 import { EditarComponent } from './componets/editar/editar.component';
 import { VerComponent } from './componets/ver/ver.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { CargarComponent } from './componets/cargar/cargar.component';
+import { EchoComponent } from './componets/echo/echo.component';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -33,13 +38,18 @@ import { VerComponent } from './componets/ver/ver.component';
     Navegador2Component,
     DialogoComponent,
     EditarComponent,
-    VerComponent
+    VerComponent,
+    CargarComponent,
+    EchoComponent
     
   ],
   imports: [
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    NzUploadModule,
     FormsModule,
     BrowserAnimationsModule,
     MatSelectModule,

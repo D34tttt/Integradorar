@@ -1,8 +1,14 @@
 <app-navegador></app-navegador>
+<mat-progress-bar mode="determinate" [value]=100></mat-progress-bar>
 <div class="cuadro">
-    <div class="busqueda">
-        <input type="text" class="in"> <img src="assets/ubicar.png" width="20px" class="imgl" alt="">
-    </div>
+    <nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <form class="d-flex">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-primary" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
 
 </div>
 
@@ -75,15 +81,6 @@
         <button style="margin: 10px" type="button" class="btn btn-outline-dark"><span class="material-icons">
             filter_alt
             </span></button><br><br>
-        <label style="margin: 10px" for="lname">Solicitar Valuador:</label>
-        <select [(ngModel)]="valuador" style="margin: 10px" class="form-select" aria-label="Default select example">
-            <option selected >Seleccionar Valuador</option>
-            <option *ngFor="let item of Tipo"value={{item.nomUsuari}}>{{item.nombre+" "+item.apPaterno+" "+item.apMaterno}}</option>
-           
-        </select><br>
-        <p>{{T1}}</p> 
-        <button style="margin: 10px" type="button" (click)="y()" class="btn btn-secondary btn-sm">solocitar evaluacio</button>
-        <br>
         <p>¿Deseas guardar el terrenos?</p>
         <button style="margin: 10px" type="button" class="btn btn-secondary btn-sm" (click)="GuT()"><span class="material-icons">
             save

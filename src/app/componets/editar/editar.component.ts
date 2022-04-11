@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { delay } from 'rxjs';
 import { Consulta, Historial, NumT, Terreno } from 'src/app/models/servisiobasedatos';
 import { UsuariosService } from 'src/app/service/usuarios.service';
+import { CargarComponent } from '../cargar/cargar.component';
 import { DialogoComponent } from '../dialogo/dialogo.component';
+import { EchoComponent } from '../echo/echo.component';
+
 
 @Component({
   selector: 'app-editar',
@@ -98,46 +102,10 @@ export class EditarComponent implements OnInit {
      this.valor13=yy.area;
      this.valor0=yy.idTerreno;
     })
-  }
-  GuT(){
-    const dialogRef = this.dialog.open(DialogoComponent,{
-      width:'350px',
-      data:'¿Deseas confirmar el registro de este terreno?'
-    });
-    dialogRef.afterClosed().subscribe(dialogRef => {
-      if(dialogRef){
-    const newTerreno:Terreno={
-      idl: this.tipo,
-      idTerreno: this.valor0,
-      nombre_pro: this.U,
-      ancho: this.valor11,
-      largo: this.valor12,
-      area: this.valor13,
-      estado: this.valor6,
-      municipio: this.valor7,
-      comunidad: "null",
-      colinda: this.valor8,
-      latitud: this.valor9,
-      longitud: this.valor10,
-      costoPropiedad: 0
-    }
-    this.usuariosService.addNewTerreno(newTerreno).subscribe((rest:any) => {})
     
-
-    const historial:Historial={
-      nomUsuari: this.U,
-      fecha: new Date(),
-      latitud: this.valor9,
-      longitud: this.valor10,
-      idl: this.tipo
-    }
-    console.log(this.tipo)
-    this.usuariosService.newHistorial(historial).subscribe((historial:any)=>{})
-    this.router.navigateByUrl('/mis terrenos')
-  }
-    })
   }
   y(){
+    
     let nombreC=(this.valor1+" "+this.valor2+" "+this.valor3)
     if(this.valuador!=="" ){
       this.T1="";
@@ -151,13 +119,50 @@ export class EditarComponent implements OnInit {
       nomUsuari: this.valuador,
       fecha: new Date(),
       nombre: nombreC,
-      estadoC: "",
+      estadoC: "En proceso",
       idT:this.tipo,
     }
     this.usuariosService.newConsulta(consulta).subscribe((rest: any)=>{
       
-    })
-    this.router.navigateByUrl('/mis terrenos')
+   })
+   this.usuariosService.getHistorial().subscribe((rest: any)=>{
+    for(let i=0;i<rest.length;i++){
+     let idl = rest[i].idl
+     if(this.tipo==idl){
+      
+      let id=String(rest[i]._id);
+      const historial:Historial={
+        status: 'Esta en proseso de valoracion',
+        idl: rest[i].idl,
+        nomUsuari: rest[i].nomUsuari,
+        fecha: rest[i].fecha,
+        latitud: rest[i].latitud,
+        longitud: rest[i].longitud,
+      }
+      this.usuariosService.actualizarHistorizl(id, historial).subscribe((rest: any)=>{
+        let yo=this.dialog.open(CargarComponent,{
+        });
+        yo.afterClosed().subscribe(dialogRef => {
+          if(dialogRef){
+          }else{
+            let correcto=this.dialog.open(EchoComponent,{
+              data:'Consulta solicitada correctamente'
+            });
+            correcto.afterClosed().subscribe(dialogRef => {
+                this.router.navigateByUrl('/mis terrenos')
+              
+            })
+            
+          }
+        })
+        
+          
+      })
+     }
+ 
+    }
+   })
+    
   }
 })}else{
 this.T1="Tienes que seleccionar un Valuador para realisar la consulta"
@@ -178,7 +183,6 @@ editar(){
     colinda: this.valor8,
     latitud: this.valor9,
     longitud: this.valor10,
-    costoPropiedad: 0
   }
   this.usuariosService.actualizarTerreno(this.rr,newTerreno).subscribe(res => {
     console.log(res)
@@ -232,4 +236,5 @@ eliminar() {
     });
   });
 }
+
 }

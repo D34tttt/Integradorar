@@ -51,7 +51,6 @@ export interface Terreno{
 	colinda:     string,
 	latitud:     number;
 	longitud:    number;
-	costoPropiedad:number;
     __v?:        number;
 }
 export interface NumT{
@@ -66,7 +65,8 @@ export interface Historial{
     fecha:       Date,
     latitud:     number,
 	longitud:    number,
-    file?:       string
+    file?:       string;
+    status:       string;
     __v?:        number;
 }
 export interface Consulta{
@@ -76,5 +76,13 @@ export interface Consulta{
     nombre:      string;
     estadoC:     string;
     idT:         number;
+    __v?:        number;
+}
+
+export interface Valorado{
+    id?:         string;
+    idTerreno:   number;
+	Item:        string;
+	costo:       number;
     __v?:        number;
 }

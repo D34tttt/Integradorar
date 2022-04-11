@@ -17,6 +17,6 @@ export class Navegador2Component implements OnInit {
   ngOnInit(): void {
   }
   y(){
-    this.router.navigateByUrl('/evaluar terrenos')
+    this.router.navigateByUrl('/#')
   }
 }

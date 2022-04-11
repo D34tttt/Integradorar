@@ -6,6 +6,8 @@ import { Consulta, Historial, NumT, Terreno, Usuario } from 'src/app/models/serv
 import { UsuariosService } from 'src/app/service/usuarios.service';
 import { DialogoComponent } from '../dialogo/dialogo.component';
 import { tipoUsuario } from '../../models/servisiobasedatos';
+import { CargarComponent } from '../cargar/cargar.component';
+import { EchoComponent } from '../echo/echo.component';
 
 @Component({
   selector: 'app-principal',
@@ -36,7 +38,8 @@ export class PrincipalComponent implements OnInit {
   tipo=0;
   public Tipo: Array<any> = [];
   U="";
-  constructor(public dialog: MatDialog,public router: Router,public usuariosService: UsuariosService) {
+  constructor(public dialog: MatDialog,
+    public router: Router,public usuariosService: UsuariosService) {
     let p=0;
     this.usuariosService.getPersonas().subscribe((rest:any)=>{
       let resultado=localStorage.getItem('resultados');
@@ -130,10 +133,9 @@ export class PrincipalComponent implements OnInit {
       estado: this.valor6,
       municipio: this.valor7,
       comunidad: this.valor8,
-      colinda:"",
+      colinda: "",
       latitud: this.valor9,
       longitud: this.valor10,
-      costoPropiedad: 0
     }
     this.usuariosService.addNewTerreno(newTerreno).subscribe((rest:any) => {})
     
@@ -143,39 +145,29 @@ export class PrincipalComponent implements OnInit {
       fecha: new Date(),
       latitud: this.valor9,
       longitud: this.valor10,
-      idl: this.tipo
+      idl: this.tipo,
+      status: 'No esta evaluada'
     }
     console.log(this.tipo)
     this.usuariosService.newHistorial(historial).subscribe((historial:any)=>{})
-    this.router.navigateByUrl('/mis terrenos')
+    let yo=this.dialog.open(CargarComponent,{
+    });
+    yo.afterClosed().subscribe(dialogRef => {
+      if(dialogRef){
+      }else{
+        let correcto=this.dialog.open(EchoComponent,{
+          data:'Terreno Guardado Correctamente'
+        });
+        correcto.afterClosed().subscribe(dialogRef => {
+            this.router.navigateByUrl('/mis terrenos')
+          
+        })
+        
+      }
+    })
+   
   }
     })
   }
-  y(){
-    let nombreC=(this.valor1+" "+this.valor2+" "+this.valor3)
-    if(this.valuador!=="" ){
-      this.T1="";
-      const dialogRef = this.dialog.open(DialogoComponent,{
-        width:'350px',
-        data:'¿Deseas confirmar la consulta con el evaluador?'
-      });
-      dialogRef.afterClosed().subscribe(dialogRef => {
-        if(dialogRef){
-    const consulta:Consulta={
-      nomUsuari: this.valuador,
-      fecha: new Date(),
-      nombre: nombreC,
-      estadoC: "",
-      idT:this.tipo,
-    }
-    this.usuariosService.newConsulta(consulta).subscribe((rest: any)=>{
-      
-    })
-    
-  }
-})}else{
-this.T1="Tienes que seleccionar un Valuador para realisar la consulta"
-}
-}
     
 }

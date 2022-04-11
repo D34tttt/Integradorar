@@ -1,6 +1,6 @@
 .busqueda{
     position: absolute;
-    width: 60%;
+    width: 40%;
     margin-left: 5%;
     margin-top: 1%;
     border: 1px solid black;
@@ -8,7 +8,9 @@
 }
 .in{
     width: 95%;
+    height: 40px;
     border: 0px;
+    margin-left: 4px;
     border-radius: 20px;
     outline:none;
 }
@@ -18,7 +20,7 @@
 }
 .map{
     position: absolute;
-    width: 70%;
+    width: 90%;
     margin-left: 5%;
     margin-top: 4%;
     border: 1px solid black;
@@ -26,11 +28,12 @@
 }
 .acciones{
     float: right;
-    margin-right:5%;
-    margin-top: 4%;
-    width: 15%;
-    height: 10cm;
-    border: 1px solid black;
+    position: relative;
+    margin-right:5.5%;
+    margin-top: 3%;
+    width: 12%;
+   
+    height: 2cm;
 
 }
 .document{
@@ -39,7 +42,7 @@
     color: inherit;
     margin-left: 5%;
     margin-top: 50%;
-    border: 1px solid black;
+
     height: 100%;
 }
 .inp{
