@@ -1,90 +1,86 @@
 <app-navegador></app-navegador>
-<mat-progress-bar mode="determinate" [value]=100></mat-progress-bar>
+<mat-progress-bar mode="determinate" [value]="100"></mat-progress-bar>
+<mat-progress-bar mode="indeterminate" *ngIf="cargarl"></mat-progress-bar>
 <div class="cuadro">
-    <nav class="navbar navbar-light bg-light">
-  <div class="container-fluid">
-    <form class="d-flex">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-primary" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
-
+  <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+        <button class="btn btn-outline-primary" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
 </div>
-
-<div>
-    <!-- div para poner el mapa -->
-    <div class="map">
-        Insertar mapa aqui
+<div class="container-fluid">
+  <!-- div para el mapa y las acciones que se realisan -->
+  <div class="row align-items-start ">
+    <div id="cl" class="col">
+      <div id="map"></div>
+      <!-- div para poner los botones de las acciones que puede realisar -->
+      <div class="acciones">
+        <br />
+        <button style="margin: 10px" id="b" type="button" class="btn btn-outline-dark">
+          <span class="material-icons"> touch_app </span>
+        </button>
+        <button style="margin: 10px" id="b" type="button" class="btn btn-outline-dark" (click)="mostrarD()">
+          <span class="material-icons"> filter_alt </span>
+        </button>
+        <button style="margin: 10px" id="b" type="button" class="btn btn-outline-dark" (click)="GuT()">
+          <span class="material-icons"> save </span>
+        </button>
+      </div>
     </div>
 
-    <!-- div del documento de usuario comun -->
-    <div class="document">
-        <p class="titulo"></p>
-        <div class="l">
+    <!-- div donde se optienen y se muestran los datos del terreno optenidos del mapa -->
+    <div class="col" *ngIf="mostrar" id="hh">
+      <span class="material-icons" style="font-size: 30px" (click)="mostrarD()">close</span>
+      <div class="l">
+        <h1 class="m" style="color: #0080ff">Caracteristicas del Terreno</h1>
 
-            <h1 style="margin: 10px" class="m">Caracteristicas del Terreno</h1>
-            <h2 style="margin: 10px" class="m">Propietario</h2>
-            <p>NumDoc: 00{{tipo}} </p>
-            <label style="margin: 5px">Nombre:</label><input style="margin: 1px" type="text" [(ngModel)]="valor1"
-                class="inp">
-            <label style="margin: 5px" for="lname">Apellido Paterno:</label>
-            <input type="text" id="lname" class="inp" [(ngModel)]="valor2">
-            <label style="margin: 5px" for="lname">Apellido Materno:</label>
-            <input type="text" id="lname" class="inp" [(ngModel)]="valor3"><br><br>
-            <label style="margin: 5px" for="email">Email:</label>
-            <input type="email" class="inp" [(ngModel)]="valor4">
-            <label style="margin: 5px" for="lname">Tel:</label>
-            <input type="tel" id="phone" class="inp" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" require
-                placeholder="123-456-7890" [(ngModel)]="valor5">
+        <hr />
+        <div id="r">
+          <p class="tN">NumDoc: 00{{ tipo }}</p>
+          <br />
+          <h2 class="m2" style="color: #0080ff">Datos Personales</h2>
+          <label class="tN">Nombre:</label><input disabled style="margin: 1px" type="text" [(ngModel)]="valor1">
+          <label for="lname" class="tN">Apellido Paterno:</label>
+          <input disabled type="text" id="lname" [(ngModel)]="valor2">
+          <label for="lname">Apellido Materno:</label>
+          <input disabled type="text" id="lname" [(ngModel)]="valor3"><br><br>
+          <label for="email">Email:</label>
+          <input disabled type="email" [(ngModel)]="valor4">
+          <label for="lname">Tel:</label>
+          <input disabled type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" require
+            placeholder="123-456-7890" [(ngModel)]="valor5">
         </div>
-        <div class="l">
-
-            <h2 style="margin: 5px" class="m2">Localizacion del terreno</h2>
-            <label style="margin: 5px" for="fname">Estado:</label><input type="text" class="inp" [(ngModel)]="valor6">
-            <label style="margin: 5px" for="lname">Municipio:</label>
-            <input type="text" id="lname" class="inp" [(ngModel)]="valor7">
-            <label style="margin: 5px" for="email">Colonia o Comunidad:</label>
-            <input type="email" class="inp" [(ngModel)]="valor8"><br><br>
-
+        <div id="r" class="l">
+          <h2 class="m2" style="color: #0080ff">Localizacion del terreno</h2>
+          <label for="fname">Estado:</label><input disabled type="text" [(ngModel)]="valor6">
+              <label for="lname">Municipio:</label>
+              <input disabled type="text" id="lname" [(ngModel)]="valor7">
+              <label for="email">Colonia o Comunidad:</label>
+              <input disabled type="email" [(ngModel)]="valor8"><br /><br />
         </div>
 
-        <div class="l">
-
-            <h2 style="margin: 5px" class="m2">Coordenadas del mapa</h2>
-            <label style="margin: 5px" for="fname">Latitud:</label><input type="text" class="inp" [(ngModel)]="valor9">
-            <label style="margin: 5px" for="lname">Longitud:</label>
-            <input type="text" id="lname" class="inp" [(ngModel)]="valor10"><br><br>
-
-
+        <div id="r" class="l">
+          <label for="fname">Latitud:</label><input disabled type="text" [(ngModel)]="valor9">
+              <label for="lname">Longitud:</label>
+              <input disabled type="text" id="lname" [(ngModel)]="valor10"><br><br>
         </div>
-        <div class="l">
-
-            <h2 style="margin: 5px" class="m2">Medidas del terreno</h2>
-            <label style="margin: 5px" for="fname">Ancho:</label><input type="text" class="inp"
-                [(ngModel)]="valor11"><br><br>
-            <label style="margin: 5px" for="lname">Largo:</label>
-            <input type="text" class="inp" [(ngModel)]="valor12"><br><br>
-            <label style="margin: 5px" for="lname">Area:</label>
-            <input type="text" class="inp" [(ngModel)]="valor13">
-
+        <div id="r" class="l">
+          <h2 class="m2" style="color: #0080ff">Medidas del terreno</h2>
+          <label for="fname">Ancho:</label><input disabled type="text" [(ngModel)]="valor11"><br><br>
+          <label for="lname">Largo:</label>
+          <input disabled type="text" [(ngModel)]="valor12"><br><br>
+          <label for="lname">Area:</label>
+          <input disabled type="text" [(ngModel)]="valor13">
         </div>
-        Patente de valoracion :<h1>{{"   "+valor0}}</h1>
+        <div id="r">
+          <h2 class="m2" style="color: #0080ff">Patente de valoracion :</h2>
+          <h1 class="tN">{{ " " + valor0 }}</h1>
+        </div>
+
+      </div>
     </div>
-
-
-    <!-- div para poner los botones de las acciones que puede realisar -->
-    <div class="acciones"><br>
-        <button style="margin: 10px" type="button" class="btn btn-outline-dark"><span class="material-icons">
-            touch_app
-            </span></button>
-        <button style="margin: 10px" type="button" class="btn btn-outline-dark"><span class="material-icons">
-            filter_alt
-            </span></button><br><br>
-        <p>¿Deseas guardar el terrenos?</p>
-        <button style="margin: 10px" type="button" class="btn btn-secondary btn-sm" (click)="GuT()"><span class="material-icons">
-            save
-            </span></button>        
-    </div>
-   
+  </div>
 </div>

@@ -8,6 +8,7 @@ import { DialogoComponent } from '../dialogo/dialogo.component';
 import { tipoUsuario } from '../../models/servisiobasedatos';
 import { CargarComponent } from '../cargar/cargar.component';
 import { EchoComponent } from '../echo/echo.component';
+import { MapService } from 'src/app/service/map.service';
 
 @Component({
   selector: 'app-principal',
@@ -15,6 +16,8 @@ import { EchoComponent } from '../echo/echo.component';
   styleUrls: ['./principal.component.scss']
 })
 export class PrincipalComponent implements OnInit {
+  mostrar:Boolean = false;
+  cargarl:Boolean = false;
   result = "";
   valuador="";
   valor0=""
@@ -38,7 +41,7 @@ export class PrincipalComponent implements OnInit {
   tipo=0;
   public Tipo: Array<any> = [];
   U="";
-  constructor(public dialog: MatDialog,
+  constructor(public dialog: MatDialog,private map: MapService,
     public router: Router,public usuariosService: UsuariosService) {
     let p=0;
     this.usuariosService.getPersonas().subscribe((rest:any)=>{
@@ -91,8 +94,10 @@ export class PrincipalComponent implements OnInit {
       this.router.navigateByUrl('/login')
     }
    }
-   
+   showFiller = false;
   ngOnInit(): void {
+    this.valor13=this.valor11*this.valor12;
+    this.map.buildMap();
     this.l()
     this.getNumT()
     let date= new Date();
@@ -169,5 +174,13 @@ export class PrincipalComponent implements OnInit {
   }
     })
   }
-    
+   mostrarD(){
+     if(this.mostrar){
+       this.mostrar =false;
+     }else{
+      this.mostrar=true;
+      this.cargarl=false;
+      
+     }
+   } 
 }

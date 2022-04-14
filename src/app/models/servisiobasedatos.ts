@@ -86,3 +86,7 @@ export interface Valorado{
 	costo:       number;
     __v?:        number;
 }
+export interface Imagenes{
+    idTerreno:   number;
+    imagen:File;
+}

@@ -16,7 +16,7 @@
             <tr *ngFor="let item of Tipo">
               <td scope="col">{{item.nombre}}</td>
               <td scope="col">{{item.fecha}}</td>
-              <td scope="col"><span class="material-icons"(click)="r(item.idT)">edit</span> <span class="material-icons" (click)="cancelar()">delete_outline</span></td>
+              <td scope="col"><span class="material-icons"(click)="r(item.idT)">edit</span> <span class="material-icons" (click)="cancelar(item.idT,item._id)">delete_outline</span></td>
             </tr>
           </thead>
       </table>

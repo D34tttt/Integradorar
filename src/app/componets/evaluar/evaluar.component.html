@@ -1,53 +1,46 @@
 <app-navegador2></app-navegador2>
 <mat-progress-bar mode="determinate" [value]=100></mat-progress-bar>
-<div class="titulo">
+<!-- titulo de la pagina -->
+<div class="titulo" id="m">
     Caracteristicas a evaluar
 </div>
-<div class="y">
-    <div class="mapa">
 
+<!-- elementos que la integran -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col" id="cl">
+        <div id="map"></div>
     </div>
-    <div class="t">
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col" >items</th>
-                <th scope="col">costo</th>
-              </tr>
-            </thead>
-            <thead >
-              <tr *ngFor="let y of Tipo">
-                <td>{{y.Item}}</td>
-                <td>{{y.costo}}$ </td>
-              </tr>
-              <tr >
-                <td>Total valoracion</td>
-                <td><input type="text" class="costo" disabled [(ngModel)]="suma">$ </td>
-              </tr>
-              <tr >
-                <td><input type="text" class="costo-j"[(ngModel)]="valor1"></td>
-                <td><input type="number" class="costo"[(ngModel)]="valor">$ </td>
-              </tr>
-            </thead>
-          </table>
-          <button (click)="A()"class="btn btn-primary me-md-2" >Agregar</button><button (click)="C()"class="btn btn-danger me-md-2">Cancelar</button><br><br>
-          <button (click)="g()"class="btn btn-primary me-md-2" >Guardar</button>
-    </div>
-</div>
-<div class="i">
-  <div class="clearfix">
-    <nz-upload
-      nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-      nzListType="picture-card"
-      [nzPreview]="handlePreview"
-    >
+    <div class="col"  style="background-color:white;">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" >items</th>
+            <th scope="col">costo</th>
+          </tr>
+        </thead>
+        <thead >
+          <tr *ngFor="let y of Tipo">
+            <td>{{y.Item}}</td>
+            <td>{{y.costo}}$ </td>
+          </tr>
+          <tr >
+            <td>Total valoracion</td>
+            <td><input type="text" class="costo" disabled [(ngModel)]="suma">$ </td>
+          </tr>
+          <tr >
+            <td><input type="text" class="costo-j"[(ngModel)]="valor1"></td>
+            <td><input type="number" class="costo"[(ngModel)]="valor">$ </td>
+          </tr>
+        </thead>
+      </table>
+      <button (click)="A()"class="btn btn-primary me-md-2" >Agregar</button><button (click)="C()"class="btn btn-danger me-md-2">Cancelar</button><br><br>
+      <button (click)="g()"class="btn btn-primary me-md-2" >Guardar</button>
+      <br><br><br>
       <div>
-        <i nz-icon nzType="plus"></i>
-        <div style="margin-top: 8px">Upload</div>
+        <input type="File" [(ngModel)]="file" ><button (click)="p()"class="btn btn-primary me-md-2" >Guardar</button>
       </div>
-    </nz-upload>
-      <ng-template #modalContent>
-        <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />
-      </ng-template>
   </div>
-</div><br>
+  
+</div>
+

@@ -28,7 +28,6 @@
         <select [(ngModel)]="valor1" class="form-select" (change)="capturar()"aria-label="Default select example">
             <option selected>seleciona un estado </option>
             <option *ngFor="let estados of dos" >{{estados.nomEstado}}</option>
-            
         </select>
         <label  class="form-select" for="municipio" class="col-md-2">Municipio:</label>
         <select [(ngModel)]="valor2" class="form-select" (change)="captar()"aria-label="Default select example">

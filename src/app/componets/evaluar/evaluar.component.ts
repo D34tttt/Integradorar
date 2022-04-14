@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Historial, Valorado } from 'src/app/models/servisiobasedatos';
+import { Historial, Imagenes, Valorado } from 'src/app/models/servisiobasedatos';
 import { UsuariosService } from 'src/app/service/usuarios.service';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
+import { MapService } from 'src/app/service/map.service';
 
 const getBase64 = (file: File): Promise<string | ArrayBuffer | null> =>
   new Promise((resolve, reject) => {
@@ -21,11 +22,12 @@ export class EvaluarComponent implements OnInit {
   valor=0;
   valor1="";
   suma=0;
+  item=0;
   l:any;
   num=0;
-  file?:File;
+  file:File;
   fotoSe:any ;
-  constructor(public usuariosService: UsuariosService,private router: Router) { 
+  constructor(public usuariosService: UsuariosService,private map: MapService,private router: Router) { 
     let resultado=localStorage.getItem('Terreno');
     this.get(resultado)
     this.l=resultado;
@@ -33,7 +35,8 @@ export class EvaluarComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    
+    this.map.buildMap();
+    this.imagenes();
   
   }
  A(){
@@ -104,11 +107,19 @@ this.valor1="";
     });
 
  }
- previewImage: string | undefined = '';
-  previewVisible = false;
-
-  handlePreview = async (file: NzUploadFile): Promise<void> => {
-    
-  };
+  p(){
+  const image:Imagenes={
+    idTerreno: this.num,
+    imagen: this.file,
+  }
+  this.usuariosService.newImagen(image).subscribe((rest: any)=>{
+    console.log(rest)
+  })
+  }
+  imagenes(){
+    this.usuariosService.geImagenes().subscribe((rest: any)=>{
+      console.log(rest);
+    })
+  }
  
 }

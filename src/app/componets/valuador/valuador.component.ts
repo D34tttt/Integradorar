@@ -62,10 +62,10 @@ export class ValuadorComponent implements OnInit {
     })
 
   }
-  cancelar() {
+  cancelar(item: 0,id:string) {
     const dialogRef = this.dialog.open(DialogoComponent, {
       width: '350px',
-      data: '¿Deseas confirmar que cancelas la consulta?'
+      data: '¿Deseas cancelas la consulta?'
     });
     dialogRef.afterClosed().subscribe(dialogRef => {
       if (dialogRef) {
@@ -78,9 +78,32 @@ export class ValuadorComponent implements OnInit {
               data:'valuacion Cancelada Correctamente'
             });
             correcto.afterClosed().subscribe(dialogRef => {
-                
-              
             })
+            this.usuariosService.deleteC(id).subscribe((res: any) => {
+
+            })
+            let tipo = String(item);
+            localStorage.setItem('Terreno', tipo);
+            this.router.navigateByUrl('/evaluar terrenos')
+            this.usuariosService.getHistorial().subscribe((rest: any) => {
+              for (let i = 0; i < rest.length; i++) {
+                let tip = rest[i].idl;
+                if (item == tip) {
+                  let id = String(rest[i]._id);
+                  const historial: Historial = {
+                    status: 'Cancelaron tu valuacion vuelve a intentarlo',
+                    idl: rest[i].idl,
+                    nomUsuari: rest[i].nomUsuari,
+                    fecha: rest[i].fecha,
+                    latitud: rest[i].latitud,
+                    longitud: rest[i].longitud,
+                  }
+                  this.usuariosService.actualizarHistorizl(id, historial).subscribe((rest: any) => {
+        
+                  });
+                }
+              }
+            });
             
           }
         })

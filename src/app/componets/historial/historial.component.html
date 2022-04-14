@@ -3,6 +3,7 @@
 <div class="titulo">
     Registro De Terrenos
 </div>
+
 <div class="y">
     <table class="table"ngz nz-demo-table-basic>
         <thead>
@@ -17,7 +18,12 @@
           <tr *ngFor="let item of Tipo">
             <td scope="col" >{{item.fecha}}</td>
             <td scope="col">{{item.latitud+" "+item.longitud}}</td>
-            <td scope="col">{{item.status}}</td>
+            <td scope="col"> 
+              <div class="alert alert-warning d-flex align-items-center" role="alert" >
+              <div>
+                {{item.status}}
+              </div>
+            </div> </td>
             <td scope="col"><span class="material-icons" (click)="editar(item.idl)" >edit</span> <span (click)="eliminar(item.idl)"class="material-icons">delete_outline</span><span (click)="ver(item.idl)"class="material-icons">
               navigate_next
               </span></td>

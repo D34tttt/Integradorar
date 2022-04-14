@@ -1,64 +1,53 @@
-
-.document{
-    position: absolute;
-    width: 70%;
-    margin-right: 5%;
-    margin-left: 15%;
-    margin-top: 3%;
-    border: 1px solid rgb(255, 255, 255);
-    
-}
-.inp{
-    border:  0px;
+#hh{
+    background-color: #fafafa;
+  
+      
+      border: 2px solid #ccc;
+      /* IMPORTANTE */;
+      background-color: white;
+      height: 200%;
+  }
+  input{
+    border-bottom: 1px solid black;
+    border-top: none;
+    border-left: none;
+    border-right: none;
     outline:none;
+    width: 5cm;
+    font-family:aria;
+    font-size: 18px;
 }
-.ly{
-    color:blue
-}
-.titulo{
-    margin: 50px;
-    color:rgb(8, 94, 157);
-    font-size: 40px;
-}
-.y{
-    margin: 50px;
-}
-.mapa{
-    position:absolute;
-    width: 1000px;
-    background-color:rgba(119, 119, 119, 0.664);
-    height: 600px;
-}
-.t{
-    position: static;
-    float: right;
-    width: 750px;
-}
-.i{
-    margin-top: 750px ;
-    margin-left: 50px;
-    width: 200px;
-    height: 150px;
-    background-color:rgba(119, 119, 119, 0.664);
-}
-
-  .costo{
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: 1px solid rgb(25, 0, 255);
-    outline: none;
-    width: 9rem;
-    padding: .5rem;
-    min-height: 2rem;
+.m{
+    text-align: center;
   }
-  .costo-j{
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: 1px solid rgb(25, 0, 255);
-    outline: none;
-    width: 450px;
-    padding: .5rem;
-    min-height: 2rem;
+  .tN{
+    font-family:aria;
+    font-size: 18px;
+    font-weight:bold;
   }
+  #r{
+    background-color: #fafafa;
+    margin: 1rem;
+    padding: 1rem;
+    border: 2px solid #ccc;
+    /* IMPORTANTE */
+    text-align: center;
+  }
+  label{
+    font-family:aria;
+    font-size: 18px;
+    font-weight:bold;
+  }
+  #hh{
+    background-color: #fafafa;
+  
+      
+      border: 2px solid #ccc;
+      /* IMPORTANTE */;
+      background-color: white;
+      height: 200%;
+  }
+  #b{
+    color: white;
+  }
+  

@@ -25,6 +25,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { CargarComponent } from './componets/cargar/cargar.component';
 import { EchoComponent } from './componets/echo/echo.component';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { NzImageModule } from 'ng-zorro-antd/image';
+
 @NgModule({
   declarations: [
     LoginComponent,
@@ -44,7 +47,10 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
     
   ],
   imports: [
+    NzImageModule,
+
     MatProgressBarModule,
+    NzDrawerModule,
     MatProgressSpinnerModule,
     BrowserModule,
     AppRoutingModule,

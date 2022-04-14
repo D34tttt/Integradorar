@@ -6,21 +6,22 @@
 .y{
     margin: 50px;
 }
-.mapa{
-    position:absolute;
-    width: 1000px;
-    background-color:rgba(119, 119, 119, 0.664);
-    height: 600px;
+#cl{
+  height: 300px;
 }
+#map{
+  width: 90%;
+  margin-left: 3%;
+  height: 200%;
+}
+
 .t{
     position: static;
     float: right;
     width: 750px;
 }
 .i{
-    margin-top: 700px ;
-    margin-left: 50px;
-    margin-bottom: 100px;
+    margin-left: 10px;
     width: 200px;
     height: 150px;
     background-color:rgba(119, 119, 119, 0.664);
@@ -45,4 +46,21 @@
     width: 450px;
     padding: .5rem;
     min-height: 2rem;
+  }
+  #m{
+    text-align: center;
+  }
+  :host ::ng-deep .upload-list-inline .ant-upload-list-item {
+    float: left;
+    width: 200px;
+    margin-right: 8px;
+  }
+  :host ::ng-deep .upload-list-inline [class*='-upload-list-rtl'] .ant-upload-list-item {
+    float: right;
+  }
+  :host ::ng-deep .upload-list-inline .ant-upload-animate-enter {
+    animation-name: uploadAnimateInlineIn;
+  }
+  :host ::ng-deep .upload-list-inline .ant-upload-animate-leave {
+    animation-name: uploadAnimateInlineOut;
   }
