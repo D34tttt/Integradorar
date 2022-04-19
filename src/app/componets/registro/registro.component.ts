@@ -6,6 +6,7 @@ import { Usuario } from 'src/app/models/servisiobasedatos';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogoComponent } from '../dialogo/dialogo.component';
 
+
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
@@ -16,6 +17,7 @@ export class RegistroComponent implements OnInit {
   public Mun: Array<any> = [];
   public Com: Array<any> = [];
   public Tipo: Array<any> = [];
+  
   name = "";apP = "";apM = "";em = "";teL = ""; call = "";numC = 0;user = "";pass = "";pass1 = "";t = "";ta = "";valorr = "";valor1 = "";valor2 = "";valor3 = "";
   public T1="";
   T2="";

@@ -29,6 +29,7 @@ export class UsuariosService {
   url12 = "http://localhost:4400/api/valorados"
   url13 = "http://localhost:4400/api/Consulta/"
   url14 = "http://localhost:4400/api/Imagenes"
+  url15=  "https://api.mapbox.com/geocoding/v5/mapbox.places/"
   constructor(private http: HttpClient) {
 
   }
@@ -160,5 +161,12 @@ export class UsuariosService {
   }
   newImagen(Imagenes: Imagenes): Observable<Imagenes> {
     return this.http.post<Imagenes>(this.url14,Imagenes);
+  }
+
+  getDatos(Long:number,Lat: number){
+    let header = new HttpHeaders()
+      .set('Type-content', 'aplication/json')
+    return this.http.get<any>(this.url15+Long+','+Lat+'.json?access_token=pk.eyJ1IjoiZXJyZWtmamoiLCJhIjoiY2wyM3FvNzE1MW43ZDNpcGVyN2trbW5obCJ9.w168DFI_R3hNWOxKKYWpLw',{
+    });
   }
 }

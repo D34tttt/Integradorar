@@ -1,6 +1,8 @@
-<div class="navegador">
-    <button (click)="login()">Login</button>
-</div>
+<ul class="nav ">
+    <li class="nav-item">
+      <a class="nav-link active" style="font-size: 20px;" aria-current="page" href="#">Regresar</a>
+    </li>
+  </ul>
 <div>
     <div class="titulo" style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">
         Registro
@@ -53,8 +55,8 @@
         <input [(ngModel)]="pass1"type="password" ><br><br>
 
         <div class="mb-3">
-            <label for="formGroupExampleInput" class="form-label">Tipo de Usuario: </label><br><br>
-            <select [(ngModel)]="valorr" class="form-select" (change)="cap()"aria-label="Default select example">
+            <label for="formGroupExampleInput" class="form-label" class="col-md-2">Tipo de Usuario: </label><br><br>
+            <select [(ngModel)]="valorr" id="select" class="form-select" (change)="cap()"aria-label="Default select example">
                 <option selected>selecciona tu rol </option>
                 <option *ngFor="let user of Tipo" >{{user.tipoUsuario}}</option>
             </select>

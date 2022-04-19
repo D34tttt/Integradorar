@@ -39,7 +39,16 @@
     position: -webkit-sticky;
     position: sticky;
    }
+   
+.li{
+    position: relative;
+    float: right;
+    margin-right: 20px;
+}
 .texto{
     margin-left:20px;
     color:red;
+}
+#select{
+    margin-left: 15px;
 }

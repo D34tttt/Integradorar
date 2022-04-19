@@ -37,14 +37,6 @@
       <button (click)="A()"class="btn btn-primary me-md-2" >Agregar</button><button (click)="C()"class="btn btn-danger me-md-2">Cancelar</button><br><br>
       <button (click)="g()"class="btn btn-primary me-md-2" >Guardar</button>
       <br><br><br>
-      <div>
-        <input type="file" class="d-none" (change)="onPhotoSelected($event)" #imageInput>
-        <img [src]="imageSelected" class="image" alt="subir image" (click)="imageInput.click()">
-            <input name="file" type="file" file />
-        <button class="cargar" (click)="p()">
-            Cargar
-        </button>
-      </div>
   </div>
   
 </div>

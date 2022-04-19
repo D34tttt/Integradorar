@@ -11,6 +11,7 @@ import { EchoComponent } from '../echo/echo.component';
 import { MapService } from 'src/app/service/map.service';
 import { map } from 'rxjs/internal/operators/map';
 import * as mapboxgl from 'mapbox-gl';
+
 @Component({
   selector: 'app-principal',
   templateUrl: './principal.component.html',
@@ -106,7 +107,7 @@ export class PrincipalComponent implements OnInit {
     this.l()
     this.getNumT()
     
-    
+  
     
   }
   getNumT(){
@@ -186,18 +187,34 @@ export class PrincipalComponent implements OnInit {
    } 
    localitation(){
      this.valor9=this.map.lait();
-     this.valor10=this.map.lonng()
+     this.valor10=this.map.lonng();
+     this.usuariosService.getDatos(this.valor10,this.valor9).subscribe((rest:any)=>{
+      console.log(rest.features);
+      for(var i=0;i<rest.features.length;i++){
+         let s=rest.features[i].place_type[0];
+        if(s=="region"){
+          this.valor6=rest.features[i].text;
+        }
+        if(s=="place"){
+          this.valor7=rest.features[i].text;
+        }
+        if(s=="postcode"){
+          this.valor8=rest.features[i].text;
+        }
+      }
+    })
    }
   select(){
     if(this.btn==0){
       this.btn=1
       this.map.getPosition().then(pos => {
         this.map.select(pos.lat,pos.lng);
-         
+        
     });
+    
     }else{
       this.btn=0;
-      this.mapa
+      this.mapa()
     }
     
     
@@ -208,4 +225,5 @@ export class PrincipalComponent implements OnInit {
        
   });
   }
+
 }

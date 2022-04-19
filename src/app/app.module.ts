@@ -27,7 +27,7 @@ import { EchoComponent } from './componets/echo/echo.component';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzImageModule } from 'ng-zorro-antd/image';
-import { ZObjetoComponent } from './componets/z-objeto/z-objeto.component';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +45,6 @@ import { ZObjetoComponent } from './componets/z-objeto/z-objeto.component';
     VerComponent,
     CargarComponent,
     EchoComponent,
-    ZObjetoComponent
     
   ],
   imports: [
