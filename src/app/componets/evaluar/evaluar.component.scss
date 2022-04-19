@@ -64,3 +64,26 @@
   :host ::ng-deep .upload-list-inline .ant-upload-animate-leave {
     animation-name: uploadAnimateInlineOut;
   }
+  .cajaText{
+    margin-top: 15px; 
+    diplay:flex;
+ }
+ .image{
+    diplay:flex;
+    margin: 10px;
+ }
+ .card{
+    overflow: hidden;
+    display: flex;
+    
+ }
+ .cargar{
+    align-content: center;
+    margin-top: 20px;
+    margin-left: 70px;
+    background: rgb(0, 255, 191);
+    font-size: 30px;
+    font-family: fantasy cursive;
+    height: 50px;
+    width: 200px;
+ }

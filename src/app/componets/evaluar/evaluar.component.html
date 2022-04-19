@@ -38,7 +38,12 @@
       <button (click)="g()"class="btn btn-primary me-md-2" >Guardar</button>
       <br><br><br>
       <div>
-        <input type="File" [(ngModel)]="file" ><button (click)="p()"class="btn btn-primary me-md-2" >Guardar</button>
+        <input type="file" class="d-none" (change)="onPhotoSelected($event)" #imageInput>
+        <img [src]="imageSelected" class="image" alt="subir image" (click)="imageInput.click()">
+            <input name="file" type="file" file />
+        <button class="cargar" (click)="p()">
+            Cargar
+        </button>
       </div>
   </div>
   

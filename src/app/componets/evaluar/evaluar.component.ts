@@ -5,13 +5,9 @@ import { UsuariosService } from 'src/app/service/usuarios.service';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
 import { MapService } from 'src/app/service/map.service';
 
-const getBase64 = (file: File): Promise<string | ArrayBuffer | null> =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = error => reject(error);
-  });
+interface HtmlInputEvent extends Event{
+  target: HTMLInputElement & EventTarget | any;
+}
 @Component({
   selector: 'app-evaluar',
   templateUrl: './evaluar.component.html',
@@ -24,20 +20,30 @@ export class EvaluarComponent implements OnInit {
   suma=0;
   item=0;
   l:any;
+  lat:number;
+  lng:number;
   num=0;
-  file:File;
+  file!: File;
+  y=this.file;
+  imageSelected: String | ArrayBuffer |undefined;
   fotoSe:any ;
   constructor(public usuariosService: UsuariosService,private map: MapService,private router: Router) { 
     let resultado=localStorage.getItem('Terreno');
     this.get(resultado)
     this.l=resultado;
     this.num=Number(resultado);
+    this.usuariosService.getTerrenos().subscribe((rest:any)=>{
+      rest.forEach(element => {
+        if(element.idl==this.num){
+          this.lat=element.latitud
+          this.lng=element.longitud
+          this.map.g(this.lng,this.lat);
+        }
+      });
+   });
   }
   
   ngOnInit(): void {
-    this.map.buildMap();
-    this.imagenes();
-  
   }
  A(){
 
@@ -107,19 +113,24 @@ this.valor1="";
     });
 
  }
-  p(){
-  const image:Imagenes={
-    idTerreno: this.num,
-    imagen: this.file,
+ onPhotoSelected(event: HtmlInputEvent):void{
+  if (event.target.files && event.target.files[0]){
+    this.file = <File>event.target.files[0];
+
+    //prevista de imagen
+    const reader=new FileReader();
+    reader.onload= e => this.imageSelected= reader.result as String;
+    reader.readAsDataURL(this.file);
   }
-  this.usuariosService.newImagen(image).subscribe((rest: any)=>{
-    console.log(rest)
+}
+p(){
+  const i:Imagenes={
+    idTerreno: 75,
+    imagen: this.y
+  }
+  this.usuariosService.newImagen(i).subscribe((rest: any)=>{
+
   })
-  }
-  imagenes(){
-    this.usuariosService.geImagenes().subscribe((rest: any)=>{
-      console.log(rest);
-    })
-  }
+}
  
 }
